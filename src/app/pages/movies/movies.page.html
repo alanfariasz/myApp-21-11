@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-toolbar color="dark">
+    <ion-title>Trending Movies</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <!-- <ion-list>
+    <ion-item button *ngFor="let item of movies" [routerLink]="[item.id]">
+
+      <ion-avatar>
+        <img [src]="imageBaseUrl + '/w92' + item.poster_path" alt="">
+      </ion-avatar>
+
+      <ion-label>
+        {{item.title}}
+        <p>{{ item.vote_average }} - {{item.original_language}}</p>
+
+      </ion-label>
+
+    </ion-item>
+  </ion-list> -->
+
+
+  <ion-card color="medium" button *ngFor="let item of movies" [routerLink]="[item.id]">
+    <img [src]="imageBaseUrl + '/w92' + item.poster_path" />
+    <ion-card-header>
+      <!-- <ion-card-title>Card Title</ion-card-title> -->
+      {{item.title}}
+
+    </ion-card-header>
+
+    <ion-card-content>
+      <p>{{ item.vote_average}} - {{item.original_language}}</p>
+      <p>{{ item.release_date }}</p>
+    </ion-card-content>
+  </ion-card>
+
+
+  <ion-infinite-scroll (ionInfinite)="loadMore($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Carregando mais imagens...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+</ion-content>
